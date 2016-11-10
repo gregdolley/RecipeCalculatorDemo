@@ -43,16 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Enums.cs" />
+    <Compile Include="MockDataFeed.cs" />
     <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="Ingredient.cs" />
+    <Compile Include="Data Objects\Ingredient.cs" />
+    <Compile Include="Interfaces\IDataFeed.cs" />
+    <Compile Include="Interfaces\IIngredient.cs" />
+    <Compile Include="Interfaces\IRecipe.cs" />
+    <Compile Include="Interfaces\IRecipeItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Recipe.cs" />
-    <Compile Include="RecipeItem.cs" />
+    <Compile Include="Data Objects\Recipe.cs" />
+    <Compile Include="Data Objects\RecipeItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

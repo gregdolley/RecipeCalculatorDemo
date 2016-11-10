@@ -3,22 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RecipeCalculator.Common;
+using RecipeCalculator.Interfaces;
 
-namespace RecipeCalculator
+namespace RecipeCalculator.DataObjects
 {
-    public enum IngredientAttribute
-    {
-        Produce = 1,
-        Organic = 2
-    }
-
-    public class Ingredient
+    public class Ingredient : IIngredient
     {
         public string Name { get; private set; }
-        public double UnitCost { get; private set; }
+        public decimal UnitCost { get; private set; }
         public IEnumerable<IngredientAttribute> Attributes { get; private set; }
 
-        public Ingredient(string name, double unitCost, IEnumerable<IngredientAttribute> attributes)
+        public Ingredient(string name, decimal unitCost, IEnumerable<IngredientAttribute> attributes)
         {
             Name = name;
             UnitCost = unitCost;

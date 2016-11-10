@@ -8,7 +8,7 @@ namespace RecipeCalculator
 {
     public static class ExtensionMethods
     {
-        public static double RoundUpToNearest(this double inputNumber, double roundTo)
+        public static decimal RoundUpToNearest(this decimal inputNumber, decimal roundTo)
         {
             return roundTo == 0 ? inputNumber : Math.Ceiling(inputNumber / roundTo) * roundTo;
         }

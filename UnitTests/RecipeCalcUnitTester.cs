@@ -1,40 +1,45 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using RecipeCalculator.Interfaces;
+using RecipeCalculator;
 
 namespace UnitTests
 {
     [TestClass]
     public class RecipeCalcUnitTester
     {
-        //[AssemblyInitialize()]
-        //public static void AssemblyInit(TestContext context)
-        //{
-        //    MessageBox.Show("Assembly Init");
-        //}
+        private static IEnumerable<IRecipe> Recipes;
 
         [ClassInitialize()]
         public static void ClassInit(TestContext context)
         {
-            MessageBox.Show("ClassInit");
-        }
-
-        [TestInitialize()]
-        public void Setup()
-        {
-            MessageBox.Show("Inside Setup...");
+            Recipes = new MockDataFeed().GetRecipes();
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestRecipeTaxCalc()
         {
-            MessageBox.Show("Inside TestMethod #1...");
+            decimal[] expectedTax = { 0.21m, 0.91m, 0.42m };
+
+            Recipes.ForEachWithIndex((r, i) => Assert.IsTrue(r.GetTax() == expectedTax[i]));
         }
 
         [TestMethod]
-        public void TestMethod2()
+        public void TestRecipeDiscountCalc()
         {
-            MessageBox.Show("Inside TestMethod #2...");
+            decimal[] expectedDiscount = { 0.11m, 0.09m, 0.07m };
+
+            Recipes.ForEachWithIndex((r, i) => Assert.IsTrue(r.GetDiscount() == expectedDiscount[i]));
+        }
+
+        [TestMethod]
+        public void TestRecipeTotalCalc()
+        {
+            decimal[] expectedTotal = { 4.45m, 11.84m, 8.91m };
+
+            Recipes.ForEachWithIndex((r, i) => Assert.IsTrue(r.GetTotal() == expectedTotal[i]));
         }
     }
 }
